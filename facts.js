@@ -11,7 +11,7 @@ const facts = [
   {
     fact: "The average four year-old child asks over four hundred questions a day"
   },
-    {
+  {
     fact: "A TI-83 calculator has six times more processing power than the computer that landed Apollo 11 on the moon"
   }
 ]
