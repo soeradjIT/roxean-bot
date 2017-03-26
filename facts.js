@@ -15,3 +15,5 @@ const facts = [
     fact: "A TI-83 calculator has six times more processing power than the computer that landed Apollo 11 on the moon"
   }
 ]
+
+module.exports = facts
