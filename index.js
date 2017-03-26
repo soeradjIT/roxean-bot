@@ -1,6 +1,5 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const path = require('path')
 
 const app = express()
 
@@ -17,7 +16,7 @@ app.post('/', (req, res) => {
   const text = req.body.text
 
   const data = {
-    response_type: 'in_channel', // public to the channel
+    response_type: 'in_channel',
     text: text
   }
 
