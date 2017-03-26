@@ -10,7 +10,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.set('port', (process.env.PORT || 3000))
 
 app.get('/', (req, res) => {
-  console.log(facts[0].fact)
   res.sendFile(path.join(__dirname, 'index.html'))
 })
 
