@@ -1,4 +1,4 @@
-const facts = [
+module.exports = [
   {
     fact: "Vending machines kill 4 times as many people as sharks per year."
   },
@@ -16,4 +16,3 @@ const facts = [
   }
 ]
 
-module.exports = facts
