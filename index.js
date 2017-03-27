@@ -22,9 +22,10 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   // const text = req.body.text
   const getFact = randomFact();
-  const data = {
+    let Fact = getFact.fact;
+    const data = {
     response_type: 'in_channel',
-    text: getFact.fact
+    text: Fact
   }
 
   res.send(data)
