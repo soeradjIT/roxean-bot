@@ -1,8 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
-
+const facts = require('./facts')
 const app = express()
+
+const randomFact = () => {
+  let randomFactId = Math.floor((Math.random() * facts.length))
+  return facts[randomFactId]
+}
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -15,7 +20,7 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
   const text = req.body.text
-
+  
   const data = {
     response_type: 'in_channel',
     text: text
