@@ -20,11 +20,11 @@ app.get('/', (req, res) => {
 
 // response
 app.post('/', (req, res) => {
-  const text = req.body.text
+  // const text = req.body.text
   const getFact = randomFact();
   const data = {
     response_type: 'in_channel',
-    text: getFact
+    text: getFact.fact
   }
 
   res.send(data)
