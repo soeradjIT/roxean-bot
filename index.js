@@ -18,12 +18,13 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'))
 })
 
+// response
 app.post('/', (req, res) => {
   const text = req.body.text
-  
+  const getFact = randomFact();
   const data = {
     response_type: 'in_channel',
-    text: text
+    text: getFact
   }
 
   res.send(data)
