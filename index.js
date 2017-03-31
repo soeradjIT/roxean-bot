@@ -23,7 +23,7 @@ app.post('/', (req, res) => {
     "text": "Data Text",
     "attachments": [
       {
-        "text": "Choose and answer",
+        "text": "Choose an answer",
         "fallback": "You are unable to choose an answer",
         "callback_id": "trivia_bot",
         "color": "#3AA3E3",
@@ -40,6 +40,10 @@ app.post('/', (req, res) => {
 
       const APIData = JSON.parse(body)
 
+      // set bot text
+      data.text = APIData.results[0].question
+
+      // add incorrect anwsers to response data
       for (let i = 0; i < APIData.results[0].incorrect_answers.length; i++){
         data.attachments[0].actions.push(
           {
@@ -51,10 +55,22 @@ app.post('/', (req, res) => {
         )
       }
 
-      data.text = APIData.results[0].question
+      // calcualte random index for attachments
+      const random = () => {
+        return Math.floor(Math.random() * data.attachments[0].actions.length)
+      }
+
+      const corretAnswer = {
+        "name": "answer",
+        "text": APIData.results[0].correct_answer,
+        "type": "button",
+        "value": "correct"
+      }
+
+      // randomly insert correct answer to response data
+      data.attachments[0].actions.splice(random(), 0, corretAnswer)
 
       res.send(data)
-
     })
 
   }
