@@ -74,6 +74,16 @@ app.post('/', (req, res) => {
 
 })
 
+app.post('/answer', (req, res) => {
+
+  let data = {
+    "response_type": "in_channel",
+    "text": "Test response: Your answer is correct/incorrect!"
+  }
+
+  res.send(data)
+})
+
 const server = app.listen(app.get('port'), () => {
   console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env)
 })
