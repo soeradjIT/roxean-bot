@@ -33,49 +33,44 @@ app.post('/', (req, res) => {
     ]
   }
 
-  const getApiData = (req, res) => {
 
-    request.get(APIURL, (err, response, body) => {
-      if (err) throw err
+  request.get(APIURL, (err, response, body) => {
+    if (err) throw err
 
-      const APIData = JSON.parse(body)
+    const APIData = JSON.parse(body)
 
-      // set bot text
-      data.text = APIData.results[0].question
+    // set bot text
+    data.text = APIData.results[0].question
 
-      // add incorrect anwsers to response data
-      for (let i = 0; i < APIData.results[0].incorrect_answers.length; i++){
-        data.attachments[0].actions.push(
-          {
-            "name": "answer",
-            "text": APIData.results[0].incorrect_answers[i],
-            "type": "button",
-            "value": "incorrect"
-          }
-        )
-      }
+    // add incorrect anwsers to response data
+    for (let i = 0; i < APIData.results[0].incorrect_answers.length; i++){
+      data.attachments[0].actions.push(
+        {
+          "name": "answer",
+          "text": APIData.results[0].incorrect_answers[i],
+          "type": "button",
+          "value": "incorrect"
+        }
+      )
+    }
 
-      // calcualte random index for attachments
-      const random = () => {
-        return Math.floor(Math.random() * data.attachments[0].actions.length)
-      }
+    // calcualte random index for attachments
+    const random = () => {
+      return Math.floor(Math.random() * data.attachments[0].actions.length)
+    }
 
-      const corretAnswer = {
-        "name": "answer",
-        "text": APIData.results[0].correct_answer,
-        "type": "button",
-        "value": "correct"
-      }
+    const corretAnswer = {
+      "name": "answer",
+      "text": APIData.results[0].correct_answer,
+      "type": "button",
+      "value": "correct"
+    }
 
-      // randomly insert correct answer to response data
-      data.attachments[0].actions.splice(random(), 0, corretAnswer)
+    // randomly insert correct answer to response data
+    data.attachments[0].actions.splice(random(), 0, corretAnswer)
 
-      res.send(data)
-    })
-
-  }
-
-  getApiData(req, res)
+    res.send(data)
+  })
 
 })
 
