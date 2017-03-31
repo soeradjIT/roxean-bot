@@ -2,7 +2,16 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 const facts = require('./facts')
+const request = require('request')
 const app = express()
+
+const getApiData = (req, res) => {
+    request.get('https://opentdb.com/api.php?amount=1&category=18', (err, response, body) => {
+        if (!err && response.statusCode == 200) {
+            res.send(body)
+        }
+    })
+}
 
 const randomFact = () => {
   let randomFactId = Math.floor((Math.random() * facts.length))
@@ -21,14 +30,17 @@ app.get('/', (req, res) => {
 // response
 app.post('/', (req, res) => {
   const text = req.body.text
-  const getFact = randomFact();
-    let Fact = getFact.fact;
-    const data = {
-    response_type: 'in_channel',
-    text: Fact
+  if(text === 'trivia') {
+    getApiData(req, res)
+  } else {  
+    const getFact = randomFact();
+      let Fact = getFact.fact;
+      const data = {
+      response_type: 'in_channel',
+      text: Fact
+    }
+    res.send(data)
   }
-
-  res.send(data)
 })
 
 const server = app.listen(app.get('port'), () => {
