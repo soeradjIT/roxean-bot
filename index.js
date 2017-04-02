@@ -90,12 +90,9 @@ app.post('/', (req, res) => {
 
 app.post('/answer', (req, res) => {
 
-  let test = JSON.parse(req.body.payload)
+  let json = JSON.parse(req.body.payload)
 
-  let answer = 'no req body'
-  if (req.body) {
-    answer = test.actions[0].value
-  }
+  let answer = json.actions[0].value
  
   let data = {
     "response_type": "in_channel",
