@@ -90,19 +90,19 @@ app.post('/', (req, res) => {
 
 app.post('/answer', (req, res) => {
 
-  let answer = req.body.actions.value
+  // let answer = req.body.actions.value
 
-  let responseText = 'undefined'
+  // let responseText = 'undefined'
 
-  if (answer !== 'correct') {
-    responseText = 'Incorrect!'
-  } else {
-    responseText = 'Correct!'
-  }
+  // if (answer !== 'correct') {
+  //   responseText = 'Incorrect!'
+  // } else {
+  //   responseText = 'Correct!'
+  // }
 
   let data = {
     "response_type": "in_channel",
-    "text": responseText
+    "text": req.body
   }
 
   res.send(data)
