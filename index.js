@@ -9,7 +9,21 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.set('port', (process.env.PORT || 3000))
 
+
 const APIURL = 'https://opentdb.com/api.php?amount=1&category=18'
+
+//function to fix &quot &l &g
+const quoteFilter = function(string){
+    let filtered = string.replace(/&(l|g|quo)t;/g, function(a,b){
+    return {
+        l   : '<',
+        g   : '>',
+        quo : '"'
+    }[b];
+})
+    
+    return filtered;
+}
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'))
@@ -40,9 +54,9 @@ app.post('/', (req, res) => {
     const APIData = JSON.parse(body)
 
     // set bot text
-    data.text = APIData.results[0].question
+    data.text = quoteFilter(APIData.results[0].question);
 
-    // add incorrect anwsers to response data
+    // add incorrect answers to response data
     for (let i = 0; i < APIData.results[0].incorrect_answers.length; i++){
       data.attachments[0].actions.push(
         {
@@ -54,7 +68,7 @@ app.post('/', (req, res) => {
       )
     }
 
-    // calcualte random index for attachments
+    // calculate random index for attachments
     const random = () => {
       return Math.floor(Math.random() * data.attachments[0].actions.length)
     }
@@ -75,7 +89,6 @@ app.post('/', (req, res) => {
 })
 
 app.post('/answer', (req, res) => {
-
   let data = {
     "response_type": "in_channel",
     "text": "Test response: Your answer is correct/incorrect!"
