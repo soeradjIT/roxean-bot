@@ -102,7 +102,7 @@ app.post('/answer', (req, res) => {
 
   let data = {
     "response_type": "in_channel",
-    "text": req.body
+    "text": JSON.stingify(req.body)
   }
 
   res.send(data)
