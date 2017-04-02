@@ -89,9 +89,20 @@ app.post('/', (req, res) => {
 })
 
 app.post('/answer', (req, res) => {
+
+  let answer = req.body.actions.value
+
+  let responseText = 'undefined'
+
+  if (answer !== 'correct') {
+    responseText = 'Incorrect!'
+  } else {
+    responseText = 'Correct!'
+  }
+
   let data = {
     "response_type": "in_channel",
-    "text": "Test response: Your answer is correct/incorrect!"
+    "text": responseText
   }
 
   res.send(data)
