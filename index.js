@@ -90,12 +90,14 @@ app.post('/', (req, res) => {
 
 app.post('/answer', (req, res) => {
 
-  let data = {
-    "response_type": "in_channel",
-    "text": "Test response: Your answer is correct/incorrect!"
-  }
+  // let data = {
+  //   "response_type": "in_channel",
+  //   "text": 'hello'
+  // }
+
+  // console.log(req.body.actions[0].value)
  
-   res.send(data)
+   res.send(JSON.parse(req.body))
  })
 
 const server = app.listen(app.get('port'), () => {
