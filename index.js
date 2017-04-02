@@ -90,9 +90,11 @@ app.post('/', (req, res) => {
 
 app.post('/answer', (req, res) => {
 
+  let test = JSON.parse(req.body.payload)
+
   let answer = 'no req body'
   if (req.body) {
-    answer = req.body
+    answer = test.actions.value
   }
  
   let data = {
