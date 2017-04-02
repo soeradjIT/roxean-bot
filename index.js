@@ -92,10 +92,8 @@ app.post('/answer', (req, res) => {
 
   let data = {
     "response_type": "in_channel",
-    "text": JSON.stringify(req.body)
+    "text": req.body.actions[0].value
   }
-
-  // console.log(req.body.actions[0].value)
  
    res.send(data)
  })
