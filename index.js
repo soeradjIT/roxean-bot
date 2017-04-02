@@ -92,7 +92,7 @@ app.post('/answer', (req, res) => {
 
   let answer = 'no req body'
   if (req.body) {
-    answer = req.body.payload.actions[0].value
+    answer = JSON.stringify(req.body)
   }
  
   let data = {
