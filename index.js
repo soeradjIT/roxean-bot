@@ -90,23 +90,13 @@ app.post('/', (req, res) => {
 
 app.post('/answer', (req, res) => {
 
-  // let answer = req.body.actions.value
-
-  // let responseText = 'undefined'
-
-  // if (answer !== 'correct') {
-  //   responseText = 'Incorrect!'
-  // } else {
-  //   responseText = 'Correct!'
-  // }
-
   let data = {
     "response_type": "in_channel",
-    "text": JSON.stingify(req.body)
+    "text": "Test response: Your answer is correct/incorrect!"
   }
-
-  res.send(data)
-})
+ 
+   res.send(data)
+ })
 
 const server = app.listen(app.get('port'), () => {
   console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env)
