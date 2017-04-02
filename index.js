@@ -94,7 +94,7 @@ app.post('/answer', (req, res) => {
 
   let answer = 'no req body'
   if (req.body) {
-    answer = test.actions.value
+    answer = test.actions[0].value
   }
  
   let data = {
