@@ -90,13 +90,18 @@ app.post('/', (req, res) => {
 
 app.post('/answer', (req, res) => {
 
+  let answer = 'no req body'
+  if (req.body) {
+    answer = 'there is a req body'
+  }
+ 
   let data = {
     "response_type": "in_channel",
     "replace_original": false,
-    "text": req.body.callback_id
+    "text": answer
   }
  
-   res.send(data)
+   res.send(req.body)
  })
 
 const server = app.listen(app.get('port'), () => {
