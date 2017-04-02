@@ -92,8 +92,11 @@ app.post('/answer', (req, res) => {
 
   let data = {
     "response_type": "in_channel",
-    "text": JSON.stingify(req.body)
+    "replace_original": false,
+    "text": 'correct/incorrect'
   }
+
+  // req.body.callback_id
  
    res.send(data)
  })
