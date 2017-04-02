@@ -93,10 +93,8 @@ app.post('/answer', (req, res) => {
   let data = {
     "response_type": "in_channel",
     "replace_original": false,
-    "text": 'correct/incorrect'
+    "text": req.body.callback_id
   }
-
-  // req.body.callback_id
  
    res.send(data)
  })
