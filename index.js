@@ -101,7 +101,7 @@ app.post('/answer', (req, res) => {
     "text": answer
   }
  
-   res.send(req.body)
+   res.send(data)
  })
 
 const server = app.listen(app.get('port'), () => {
